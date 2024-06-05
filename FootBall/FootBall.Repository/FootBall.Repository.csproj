@@ -12,6 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\FootBall.Common\FootBall.Common.csproj" />
     <ProjectReference Include="..\FootBall.Repository.Common\FootBall.Repository.Common.csproj" />
   </ItemGroup>
 

@@ -1,3 +1,4 @@
+using FootBall.Common;
 using FootBall.Model;
 using FootBall.Service;
 using Microsoft.AspNetCore.Mvc;
@@ -84,5 +85,25 @@ namespace Example.WebApi.Controllers
                 return BadRequest(ex.Message);
             }
         }
+        [HttpGet("FilteredFormulas")]
+
+        public async Task<IActionResult> Get(Guid? Id, string? firstName, string? lastName, Guid? clubName, string? sortBy = "Name", string? sortOrder = "ASC")
+        {
+            try
+            {
+                GetPlayer getPlayer = new GetPlayer(new Filter(Id, firstName, lastName, clubName), new Sort(sortBy, sortOrder));
+                IList<FootBallPlayer> players = await service.GetAllAsync(getPlayer);
+                return Ok(players);
+                
+            }
+            catch (Exception ex) { 
+            return BadRequest(ex.Message);
+            }
+        
+        
+        
+        
+        }
+
     }
 }

@@ -3,6 +3,8 @@ using FootBall.Service.Common;
 using FootBall.Service;
 using FootBall.Model;
 using FootBall.Repository;
+using System.Dynamic;
+using FootBall.Common;
 
 namespace FootBall.Service
 {
@@ -33,7 +35,10 @@ namespace FootBall.Service
            return await playerRepository.GetPlayerById(id);
         }
 
-        
+        public async Task<IList<FootBallPlayer>> GetAllAsync(GetPlayer getPlayer) 
+        {
+            return await playerRepository.GetAllAsync(getPlayer);
+        }
 
         
     }

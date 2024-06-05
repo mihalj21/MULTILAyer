@@ -1,4 +1,5 @@
 ﻿using System.Numerics;
+using FootBall.Common;
 using FootBall.Model;
 
 namespace FootBall.Repository.Common
@@ -12,6 +13,6 @@ namespace FootBall.Repository.Common
 
         Task <FootBallPlayer> GetPlayerById(Guid id);
 
-        
+        Task<IList<FootBallPlayer>> GetAllAsync(GetPlayer getPlayer );
     }
 }

@@ -1,4 +1,5 @@
-﻿using FootBall.Model;
+﻿using FootBall.Common;
+using FootBall.Model;
 
 
 namespace FootBall.Service.Common
@@ -11,7 +12,7 @@ namespace FootBall.Service.Common
         Task<IEnumerable<FootBallPlayer>> GetPlayer();
 
         Task<FootBallPlayer> GetPlayerById(Guid id);
-
+        Task<IList<FootBallPlayer>> GetAllAsync(GetPlayer getPlayer);
 
     }
 }

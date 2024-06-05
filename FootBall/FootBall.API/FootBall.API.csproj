@@ -11,6 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\FootBall.Common\FootBall.Common.csproj" />
     <ProjectReference Include="..\FootBall.Model\FootBall.Model.csproj" />
     <ProjectReference Include="..\FootBall.Service\FootBall.Service.csproj" />
   </ItemGroup>

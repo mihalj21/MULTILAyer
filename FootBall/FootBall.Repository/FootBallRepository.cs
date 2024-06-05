@@ -1,6 +1,8 @@
 ﻿using FootBall.Model;
 using FootBall.Repository.Common;
 using Npgsql;
+using System.Text;
+using FootBall.Common;
 
 namespace FootBall.Repository
 {
@@ -122,7 +124,43 @@ namespace FootBall.Repository
            
            
         }
+        public async Task<IList<FootBallPlayer>> GetAllAsync(GetPlayer getPlayer)
+        {
+            NpgsqlConnection _connection = new NpgsqlConnection(connectionString);
+            IList<FootBallPlayer> players = new List<FootBallPlayer>();
+            NpgsqlCommand command = new NpgsqlCommand("", _connection);
+            command = MakeCommand(getPlayer, command);
+            _connection.Open();
+            using (var reader = command.ExecuteReader())
+            {
+                while (await reader.ReadAsync())
+                {
+                    FootBallPlayer footBallPlayer = new FootBallPlayer();
+                    footBallPlayer.Id = reader.GetGuid(reader.GetOrdinal("Id"));
+                    footBallPlayer.FirstName = reader.GetString(reader.GetOrdinal("firstName"));
+                    footBallPlayer.LastName = reader.GetString(reader.GetOrdinal("lastName"));
+                    
+                    players.Add(footBallPlayer);
+                }
+            }
+            _connection.Close();
+            return players;
+        }
+        private NpgsqlCommand MakeCommand(GetPlayer getPlayer, NpgsqlCommand command)
+        {
+            StringBuilder builder = new StringBuilder();
+            builder.Append("SELECT * FROM \"FootballPlayer\" WHERE \"IsActive\" =@IsActive ");
+            command.Parameters.AddWithValue("isActive", true);
 
-        
+            if (getPlayer.filter.FirstName != null) {
+
+                builder.Append("AND \"FirstName\" LIKE  @Firstname");
+                command.Parameters.AddWithValue("Name", getPlayer.filter.FirstName);
+            }
+            builder.Append($" ORDER BY \"{getPlayer.sort.SortBy}\" {getPlayer.sort.SortOrder}");
+            return command;
+
+        }
+
     }
 }

@@ -15,5 +15,7 @@ namespace FootBall.Model
         public string Nationality { get; set; }
         public int Age { get; set; }
         public Guid? ClubId { get; set; }
+
+        public bool IsActive { get; set; } 
     }
 }
