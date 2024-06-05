@@ -6,12 +6,12 @@ namespace FootBall.Service.Common
 { 
     public interface IFootBallService
     {
-        public string PostPlayer(FootBallPlayer player);
-        public string DeletePlayer(Guid Id);
-         public List<FootBallPlayer> GetPlayer();
+        Task PostPlayer(FootBallPlayer player);
+        Task DeletePlayer(Guid Id);
+        Task<IEnumerable<FootBallPlayer>> GetPlayer();
 
-        public FootBallPlayer GetPlayerById(Guid id);
+        Task<FootBallPlayer> GetPlayerById(Guid id);
 
-       
+
     }
 }

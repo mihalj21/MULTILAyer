@@ -22,11 +22,11 @@ namespace Example.WebApi.Controllers
 
         [HttpPost("PostFootballPlayer")]
 
-        public ActionResult Post( FootBallPlayer player)
+        public async Task<IActionResult> Post( FootBallPlayer player)
         {
             try
             {
-                service.PostPlayer(player);
+               await  service.PostPlayer(player);
                 return Ok("Succesfully added");
             }
             catch (Exception ex) {
@@ -36,13 +36,13 @@ namespace Example.WebApi.Controllers
         }
         [HttpGet("GetFootballPlayerByGUID")]
 
-        public ActionResult GetById(Guid id)
+        public async Task<ActionResult> GetById(Guid id)
         {
 
 
             try
             {
-                service.GetPlayerById(id);
+               await  service.GetPlayerById(id);
                 return Ok("Succesfully updated");
             }
             catch (Exception ex)
@@ -54,11 +54,11 @@ namespace Example.WebApi.Controllers
 
         [HttpGet("GetFootballPlayers")]
 
-        public ActionResult Get()
+        public async Task<ActionResult> Get()
         {
             try
             {
-                return Ok(service.GetPlayer());
+                return Ok(await service.GetPlayer());
             }
             catch (Exception ex)
             {
@@ -67,7 +67,7 @@ namespace Example.WebApi.Controllers
         }
 
         [HttpDelete("{id}")]
-        public IActionResult DeletePlayer(Guid id)
+        public  async Task<IActionResult> DeletePlayer(Guid id)
         {
             try
             {
@@ -76,7 +76,7 @@ namespace Example.WebApi.Controllers
                 if (footBallPlayer == null) { 
                  return NotFound();
                 }
-                service.DeletePlayer(id);
+                await service.DeletePlayer(id);
                 return Ok("Player added");
             }
             catch (Exception ex)

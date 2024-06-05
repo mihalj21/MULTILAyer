@@ -6,11 +6,11 @@ namespace FootBall.Repository.Common
 {
     public interface IFootballRepository
     {
-        string PostPlayer(FootBallPlayer player);
-        string DeletePlayer(FootBallPlayer player);
-        public List<FootBallPlayer> GetPlayer();
+        Task PostPlayer(FootBallPlayer player);
+        Task DeletePlayer(Guid Id);
+        Task <IEnumerable<FootBallPlayer>> GetPlayer();
 
-        public FootBallPlayer GetPlayerById(Guid id);
+        Task <FootBallPlayer> GetPlayerById(Guid id);
 
         
     }

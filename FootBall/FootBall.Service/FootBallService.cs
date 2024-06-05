@@ -11,26 +11,26 @@ namespace FootBall.Service
     {
         FootBallRepository playerRepository = new FootBallRepository();
 
-        public string PostPlayer(FootBallPlayer player)
+        public async Task PostPlayer(FootBallPlayer player)
         {
-            return playerRepository.PostPlayer(player);
+            await playerRepository.PostPlayer(player);
         }
 
 
-        public string DeletePlayer(Guid Id)
+        public async Task DeletePlayer(Guid Id)
         {
             
-                return playerRepository.DeletePlayer(Id);
+                await playerRepository.DeletePlayer(Id);
            
         }
-        public List<FootBallPlayer> GetPlayer()
+        public async  Task<IEnumerable<FootBallPlayer>> GetPlayer()
         {
-            return playerRepository.GetPlayer();
+           return  await playerRepository.GetPlayer();
         }
 
-        public FootBallPlayer GetPlayerById(Guid id)
+        public async  Task<FootBallPlayer> GetPlayerById(Guid id)
         {
-            return playerRepository.GetPlayerById(id);
+           return await playerRepository.GetPlayerById(id);
         }
 
         
