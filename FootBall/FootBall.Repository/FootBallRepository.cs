@@ -149,15 +149,16 @@ namespace FootBall.Repository
         private NpgsqlCommand MakeCommand(GetPlayer getPlayer, NpgsqlCommand command)
         {
             StringBuilder builder = new StringBuilder();
-            builder.Append("SELECT * FROM \"FootballPlayer\" WHERE \"IsActive\" =@IsActive ");
-            command.Parameters.AddWithValue("isActive", true);
+         builder.Append("SELECT * FROM \"FootballPlayer\" WHERE 1=1");
+            
 
             if (getPlayer.filter.FirstName != null) {
 
-                builder.Append("AND \"FirstName\" LIKE  @Firstname");
-                command.Parameters.AddWithValue("Name", getPlayer.filter.FirstName);
+                builder.Append(" AND \"FirstName\" LIKE  @Firstname");
+                command.Parameters.AddWithValue("@FirstName", $"%{getPlayer.filter.FirstName}%");
             }
             builder.Append($" ORDER BY \"{getPlayer.sort.SortBy}\" {getPlayer.sort.SortOrder}");
+            command.CommandText = builder.ToString();
             return command;
 
         }

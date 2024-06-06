@@ -3,6 +3,7 @@ using FootBall.Model;
 using FootBall.Service;
 using Microsoft.AspNetCore.Mvc;
 using Npgsql;
+using System.Diagnostics;
 using System.Net;
 
 
@@ -87,13 +88,16 @@ namespace Example.WebApi.Controllers
         }
         [HttpGet("FilteredFormulas")]
 
-        public async Task<IActionResult> Get(Guid? Id, string? firstName, string? lastName, Guid? clubName, string? sortBy = "Name", string? sortOrder = "ASC")
+        public async Task<IActionResult> Get(Guid? Id, string? firstName, string? lastName, Guid? clubName, string? sortBy = "FirstName", string? sortOrder = "ASC")
         {
+            
             try
             {
                 GetPlayer getPlayer = new GetPlayer(new Filter(Id, firstName, lastName, clubName), new Sort(sortBy, sortOrder));
                 IList<FootBallPlayer> players = await service.GetAllAsync(getPlayer);
+                
                 return Ok(players);
+                
                 
             }
             catch (Exception ex) { 
