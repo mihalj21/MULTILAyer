@@ -3,22 +3,25 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.10.34916.146
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FootBall.API", "FootBall.API\FootBall.API.csproj", "{749AB735-AA3C-4202-B863-6606B8789BC8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FootBall.API", "FootBall.API\FootBall.API.csproj", "{749AB735-AA3C-4202-B863-6606B8789BC8}"
+	ProjectSection(ProjectDependencies) = postProject
+		{6C98399C-7891-4269-AC59-120FB9557F5F} = {6C98399C-7891-4269-AC59-120FB9557F5F}
+	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FootBall.Service", "FootBall.Service\FootBall.Service.csproj", "{E676019D-F0F9-49C0-8E49-925FAA455A6E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FootBall.Service", "FootBall.Service\FootBall.Service.csproj", "{E676019D-F0F9-49C0-8E49-925FAA455A6E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FootBall.Service.Common", "FootBall.Service.Common\FootBall.Service.Common.csproj", "{6C98399C-7891-4269-AC59-120FB9557F5F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FootBall.Service.Common", "FootBall.Service.Common\FootBall.Service.Common.csproj", "{6C98399C-7891-4269-AC59-120FB9557F5F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FootBall.Repository", "FootBall.Repository\FootBall.Repository.csproj", "{9D8B109F-E35E-46CB-BF96-0B98FDEF6BF4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FootBall.Repository", "FootBall.Repository\FootBall.Repository.csproj", "{9D8B109F-E35E-46CB-BF96-0B98FDEF6BF4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FootBall.Repository.Common", "FootBall.Repository.Common\FootBall.Repository.Common.csproj", "{1D07F58D-1C79-4C77-84BD-B2D8F0ADDA77}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FootBall.Repository.Common", "FootBall.Repository.Common\FootBall.Repository.Common.csproj", "{1D07F58D-1C79-4C77-84BD-B2D8F0ADDA77}"
 	ProjectSection(ProjectDependencies) = postProject
 		{F1168044-D7C7-4054-96EB-7421A84FEF33} = {F1168044-D7C7-4054-96EB-7421A84FEF33}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FootBall.Model", "FootBall.Model\FootBall.Model.csproj", "{F1168044-D7C7-4054-96EB-7421A84FEF33}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FootBall.Model", "FootBall.Model\FootBall.Model.csproj", "{F1168044-D7C7-4054-96EB-7421A84FEF33}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FootBall.Common", "FootBall.Common\FootBall.Common.csproj", "{8A482297-00EC-4D88-81FD-652E625A7F78}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FootBall.Common", "FootBall.Common\FootBall.Common.csproj", "{8A482297-00EC-4D88-81FD-652E625A7F78}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

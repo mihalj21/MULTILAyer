@@ -1,8 +1,7 @@
 using FootBall.Common;
 using FootBall.Model;
-using FootBall.Service;
+using FootBall.Service.Common;
 using Microsoft.AspNetCore.Mvc;
-using Npgsql;
 using System.Diagnostics;
 using System.Net;
 
@@ -19,8 +18,12 @@ namespace Example.WebApi.Controllers
     {
         string connectionString = "Host = localhost; Port=5433;Database=FootballClub;Username=postgres;Password=mono";
 
-        FootBallService service = new FootBallService();
-       
+        private readonly IFootBallService _footBallService;
+
+        public FootBallPlayerController(IFootBallService footBallService)
+        {
+            _footBallService = footBallService;
+        }
 
         [HttpPost("PostFootballPlayer")]
 
@@ -28,7 +31,7 @@ namespace Example.WebApi.Controllers
         {
             try
             {
-               await  service.PostPlayer(player);
+               await  _footBallService.PostPlayer(player);
                 return Ok("Succesfully added");
             }
             catch (Exception ex) {
@@ -44,7 +47,7 @@ namespace Example.WebApi.Controllers
 
             try
             {
-               await  service.GetPlayerById(id);
+               await  _footBallService.GetPlayerById(id);
                 return Ok("Succesfully updated");
             }
             catch (Exception ex)
@@ -60,7 +63,7 @@ namespace Example.WebApi.Controllers
         {
             try
             {
-                return Ok(await service.GetPlayer());
+                return Ok(await _footBallService.GetPlayer());
             }
             catch (Exception ex)
             {
@@ -73,12 +76,12 @@ namespace Example.WebApi.Controllers
         {
             try
             {
-                var footBallPlayer = service.GetPlayerById(id);
+                var footBallPlayer = _footBallService.GetPlayerById(id);
 
                 if (footBallPlayer == null) { 
                  return NotFound();
                 }
-                await service.DeletePlayer(id);
+                await _footBallService.DeletePlayer(id);
                 return Ok("Player added");
             }
             catch (Exception ex)
@@ -94,7 +97,7 @@ namespace Example.WebApi.Controllers
             try
             {
                 GetPlayer getPlayer = new GetPlayer(new Filter(Id, firstName, lastName, clubName), new Sort(sortBy, sortOrder));
-                IList<FootBallPlayer> players = await service.GetAllAsync(getPlayer);
+                IList<FootBallPlayer> players = await _footBallService.GetAllAsync(getPlayer);
                 
                 return Ok(players);
                 
