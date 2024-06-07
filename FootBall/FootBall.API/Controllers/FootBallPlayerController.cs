@@ -1,3 +1,5 @@
+using AutoMapper;
+using FootBall.API.RestModels;
 using FootBall.Common;
 using FootBall.Model;
 using FootBall.Service.Common;
@@ -19,10 +21,11 @@ namespace Example.WebApi.Controllers
         string connectionString = "Host = localhost; Port=5433;Database=FootballClub;Username=postgres;Password=mono";
 
         private readonly IFootBallService _footBallService;
-
-        public FootBallPlayerController(IFootBallService footBallService)
+        private readonly IMapper _mapper;
+        public FootBallPlayerController(IFootBallService footBallService, IMapper mapper)
         {
             _footBallService = footBallService;
+            _mapper = mapper;
         }
 
         [HttpPost("PostFootballPlayer")]
@@ -63,7 +66,10 @@ namespace Example.WebApi.Controllers
         {
             try
             {
-                return Ok(await _footBallService.GetPlayer());
+                var players = await _footBallService.GetPlayer();
+                var restPlayers = _mapper.Map<IEnumerable<RestFootBallPlayer>>(players);
+                return Ok(restPlayers);
+
             }
             catch (Exception ex)
             {
