@@ -95,7 +95,7 @@ namespace Example.WebApi.Controllers
                 return BadRequest(ex.Message);
             }
         }
-        [HttpGet("FilteredFormulas")]
+        [HttpGet("FilteredFootBallPlayer")]
 
         public async Task<IActionResult> Get(Guid? Id, string? firstName, string? lastName, Guid? clubName, string? sortBy = "FirstName", string? sortOrder = "ASC")
         {
